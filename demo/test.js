@@ -1,5 +1,9 @@
-
-
 const e = new Country();
 let d = e.RealCountry();
-console.log(d);
+let f = e.CountryPrefix();
+let g = e.CountrySuffix();
+let c = e.Population;
+console.log('Random Country Name: ' + d);
+console.log('Random Country Prefix: ' + f);
+console.log('Random Country Suffix: ' + g);
+console.log();
