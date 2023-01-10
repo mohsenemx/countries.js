@@ -1,3 +1,4 @@
+
 const e = new Country();
 let d = e.RealCountry();
 let f = e.CountryPrefix();
@@ -6,4 +7,4 @@ let c = e.Population;
 console.log('Random Country Name: ' + d);
 console.log('Random Country Prefix: ' + f);
 console.log('Random Country Suffix: ' + g);
-console.log();
+console.log('A random name: ' + e.RandomName(false, false,'NSRE',true));

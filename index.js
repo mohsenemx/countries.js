@@ -193,15 +193,76 @@ class Country {
         }
     }
     RealCountry() {
-        let rand = Math.round(Math.random() * listof_countries.length);
+        let rand = Math.round(Math.random() * (listof_countries.length - 1));
         return listof_countries[rand];
     }
     CountryPrefix() {
-        let rand = Math.round(Math.random() * listof_prefixes.length);
+        let rand = Math.round(Math.random() * (listof_prefixes.length - 1));
         return listof_prefixes[rand];
     }
     CountrySuffix() {
-        let rand = Math.round(Math.random() * listof_suffixes.length);
+        let rand = Math.round(Math.random() * (listof_suffixes.length - 1));
         return listof_suffixes[rand];
     }
-}
+    RandomName(seed, usePrefix, engine, useSuffix) {
+        if (usePrefix && useSuffix) {
+            return 'usePrefix and useSuffix cannot be true at the same time.';   
+        } else {
+        if (engine == "crle" || engine == "CRLE") {
+        if (seed.length < 10) {
+            return 'Not enough letters in seed';
+        } else {
+        let marsko_letd = seed.split('');
+        let marsko_letd_length = marsko_letd.length;
+        let letters_n = Math.round(Math.random() * (seed.length - 6) + 3); 
+        let alph = "a b c d e f g h i j k l m n o p q r s t u v w x y z".split(' ');
+        let final = '';
+        
+        for (let i = 0; i < letters_n;i++) {
+        // do something
+            let rand = Math.round(Math.random() * (alph.length - 1));
+            final = final + alph[rand];
+            }
+            if (usePrefix) {
+                let rand = Math.round(Math.random() * (listof_prefixes.length - 1));
+                return listof_prefixes[rand]  + ' ' + final;
+            } else if (useSuffix) {
+                let rand = Math.round(Math.random() * (listof_suffixes.length - 1));
+                return listof_suffixes[rand] + ' ' + final;
+            } else if (!usePrefix && !useSuffix) {
+                return final;
+            }
+        }
+        } else if (engine == 'NSRE' || engine == 'nsre' || engine == undefined || engine == null) {
+            let final = '';
+            let alph = "a b c d e f g h i j k l m n o p q r s t u v w x y z".split(' ');
+            let letters_n = Math.round(Math.random() * 9 + 4);
+            
+            for (let i = 0; i < letters_n;i++) {
+                let rand = Math.round(Math.random() * (alph.length - 1));
+                if (final.indexOf('e') == -1) {
+                    final = final + 'e';
+                } else if (final.indexOf('i') == -1) {
+                    final = final + 'i';
+                } else if (final.indexOf('o') == -1) {
+                    final = final + 'o';
+                } else {
+                    final = final + alph[rand];
+                }
+            }
+
+            if (usePrefix) {
+                let rand = Math.round(Math.random() * (listof_prefixes.length - 1));
+                return listof_prefixes[rand]  + ' ' + final;
+            } else if (useSuffix) {
+                let rand = Math.round(Math.random() * (listof_suffixes.length - 1));
+                return final + ' ' + listof_suffixes[rand];
+            } else if (!usePrefix && !useSuffix) {
+                return final;
+            }
+            } else {
+                return 'Selected Engine does not exist. Please Try SRLE';
+            }
+        }
+    }
+} // Not so random engine NSRE
