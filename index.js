@@ -228,7 +228,7 @@ class Country {
                 return listof_prefixes[rand]  + ' ' + final;
             } else if (useSuffix) {
                 let rand = Math.round(Math.random() * (listof_suffixes.length - 1));
-                return listof_suffixes[rand] + ' ' + final;
+                return final + ' ' + listof_suffixes[rand];
             } else if (!usePrefix && !useSuffix) {
                 return final;
             }
@@ -240,15 +240,23 @@ class Country {
             
             for (let i = 0; i < letters_n;i++) {
                 let rand = Math.round(Math.random() * (alph.length - 1));
-                if (final.indexOf('e') == -1) {
-                    final = final + 'e';
-                } else if (final.indexOf('i') == -1) {
-                    final = final + 'i';
+                if (final.indexOf('a') == -1) {
+                    final = final + alph[rand] + 'a';
+                } else if (final.indexOf('e') == -1) {
+                    final = final + alph[rand] + 'e';
                 } else if (final.indexOf('o') == -1) {
-                    final = final + 'o';
-                } else {
-                    final = final + alph[rand];
+                    final = final + alph[rand] + 'o';
+                } else if (final.indexOf('u') == -1) {
+                    final = final + alph[rand] + 'u' + alph[rand];
                 }
+                if (final.indexOf('ee') == 0) {
+                    final.replace('ee','i');
+                } else if (final.indexOf('aa') == 0) {
+                    final.replace('aa','i');
+                } else if (final.indexOf('uu') == 0) {
+                    final.replace('uu','e');
+                }
+
             }
 
             if (usePrefix) {
@@ -265,4 +273,4 @@ class Country {
             }
         }
     }
-} // Not so random engine NSRE
+} 
