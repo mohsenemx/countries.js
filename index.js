@@ -1,7 +1,7 @@
 
 // This will produce an array of country names with 194 possible indexes.
 const listof_countries = "Afghanistan;Albania;Algeria;Andorra;Angola;Antigua and Barbuda;Argentina;Armenia;Australia;Austria;Azerbaijan;The Bahamas;Bahrain;Bangladesh;Barbados;Belarus;Belgium;Belize;Benin;Bhutan;Bolivia;Bosnia and Herzegovina;Botswana;Brazil;Brunei;Bulgaria;Burkina Faso;Burundi;Cape Verde;Cambodia;Cameroon;Canada;Central African Republic;Chad;Chile;China;Colombia;Comoros;Congo, Democratic Republic of the;Congo, Republic of the;Costa Rica;Côte d’Ivoire;Croatia;Cuba;Cyprus;Czech Republic;Denmark;Djibouti;Dominica;Dominican Republic;East Timor (Timor-Leste);Ecuador;Egypt;El Salvador;Equatorial Guinea;Eritrea;Estonia;Eswatini;Ethiopia;Fiji;Finland;France;Gabon;The Gambia;Georgia;Germany;Ghana;Greece;Grenada;Guatemala;Guinea;Guinea-Bissau;Guyana;Haiti;Honduras;Hungary;Iceland;India;Indonesia;Iran;Iraq;Ireland;Israel;Italy;Jamaica;Japan;Jordan;Kazakhstan;Kenya;Kiribati;North Korea;South Korea;Kosovo;Kuwait;Kyrgyzstan;Laos;Latvia;Lebanon;Lesotho;Liberia;Libya;Liechtenstein;Lithuania;Luxembourg;Madagascar;Malawi;Malaysia;Maldives;Mali;Malta;Marshall Islands;Mauritania;Mauritius;Mexico;Micronesia, Federated States of;Moldova;Monaco;Mongolia;MontenegroMorocco;Mozambique;Myanmar;Namibia;Nauru;Nepal;Netherlands;New Zealand;Nicaragua;Niger;Nigeria;North Macedonia;Norway;Oman;Pakistan;Palau;Panama;Papua New Guinea;Paraguay;Peru;Philippines;Poland;Portugal;Qatar;Romania;Russia;Rwanda;Saint Kitts and Nevis;Saint Lucia;Saint Vincent and the Grenadines;Samoa;San Marino;Sao Tome and Principe;Saudi Arabia;Senegal;Serbia;Seychelles;Sierra Leone;Singapore;Slovakia;Slovenia;Solomon Islands;Somalia;South Africa;Spain;Sri Lanka;Sudan;South Sudan;Suriname;Sweden;Switzerland;Syria;Taiwan;Tajikistan;Tanzania;Thailand;Togo;Tonga;Trinidad and Tobago;Tunisia;Turkey;Turkmenistan;Tuvalu;Uganda;Ukraine;United Arab Emirates;United Kingdom;United States;Uruguay;Uzbekistan;Vanuatu;Vatican City;Venezuela;Vietnam;Yemen;Zambia;Zimbabwe".split(';');
-const listof_prefixes = "Republic of;Federal Republic of;Democratic People’s Republic of;Islamic Republic;Kingdom of;Empire of;Emirates".split(';');
+const listof_prefixes = "Republic of;Federal Republic of;Democratic People’s Republic of;Islamic Republic;Kingdom of;Empire of;Emirates of".split(';');
 const listof_suffixes = "Republic;Arab Republic;Kingdom;Empire".split(';');
 
 class Country {
@@ -1706,7 +1706,7 @@ class Country {
         // do something
             let rand = Math.round(Math.random() * (alph.length - 1));
             final = final + alph[rand];
-            }
+            } // use Prefix or Suffix checks
             if (usePrefix) {
                 let rand = Math.round(Math.random() * (listof_prefixes.length - 1));
                 return listof_prefixes[rand]  + ' ' + final;
@@ -1722,31 +1722,58 @@ class Country {
             let alph = "a b c d e f g h i j k l m n o p q r s t u v w x y z".split(' ');
             let letters_n = Math.round(Math.random() * 9 + 4);
             
-            for (let i = 0; i < letters_n;i++) {
-                let rand = Math.round(Math.random() * (alph.length - 1));
-                /*
-                if (final.indexOf('a') == -1) {
-                    final = final + alph[rand] + 'a';
-                } else if (final.indexOf('e') == -1) {
-                    final = final + alph[rand] + 'e';
-                } else if (final.indexOf('o') == -1) {
-                    final = final + alph[rand] + 'o';
-                } else if (final.indexOf('u') == -1) {
-                    final = final + alph[rand] + 'u' + alph[rand];
-                }
-                if (final.indexOf('ee') == 0) {
-                    final.replace('ee','i');
-                } else if (final.indexOf('aa') == 0) {
-                    final.replace('aa','i');
-                } else if (final.indexOf('uu') == 0) {
-                    final.replace('uu','e');
-                } else {
-                    final.replace('ooo','g');
-                } */
+            for (let i = 0; i < letters_n;i++) { // NSRE
+                let rand = Math.round(Math.random() * 49);
                 switch (rand) {
-                    case 0: if (final.indexOf('')) ;
-                    case 1: final += final;
+                  case 0: final = final + 's';
+                  break;
+                  case 1: final = final + 'f';
+                  break;
+                  case 2: final = final + 'c';
+                  break;
+                  case 3: final += 'e';
+                  break;
+                  case 4: if (final.indexOf('e')) {
+                    final += 'e';
+                    break;
+                  } else {
+                    final += 'u';
+                    break;
+                  }
+                  case 5: final += 'b';
+                  break;
+                  case 6: final += 'm';
+                  break;
+                  case 7: final += 'n';
+                  break;
+                  case 8: final += 'k';
+                  break;
+                  case 9: final += 'q';
+                  break;
+                  case 10: final += 'd';
+                  break;
+                  case 11: final += 'h';
+                  break;
+                  case 12: final += 'g';
+                  break;
+                  case 13: final += 'h';
+                  break;
+                  case 14: final += 'a';
+                  break;
+                  case 15: final += 'ee';
+                  break;
+                  case 16: final += 'aa';
+                  break;
+                  case 17: final += 'o';
+                  break;
+                  case 18: final += 'u';
+                  break;
+                  case 19: final += 'p';
+                  break;
+                  case 20: final += 'f';
+                  break;
                 }
+            }
             if (usePrefix) {
                 let rand = Math.round(Math.random() * (listof_prefixes.length - 1));
                 return listof_prefixes[rand]  + ' ' + final;
@@ -1758,7 +1785,6 @@ class Country {
             } else {
                 return 'Selected Engine does not exist. Please Try SRLE';
             }
-        }
     }
         }
      } // Function random name closing
